@@ -34,6 +34,7 @@ const PlayerForm = ({}: Props) => {
         <div className="flex flex-col gap-5 text-lg">
           <label htmlFor="player_name">Player Name</label>
           <input
+            required
             type="text"
             id="player_name"
             className="accent2--bgc bgc1--c m-auto w-full min-w-0 max-w-md rounded-md py-1 px-2"

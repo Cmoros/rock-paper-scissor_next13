@@ -5,6 +5,7 @@ export const metadata = {
 };
 import { Inter } from "next/font/google";
 import { Providers } from "@/redux/Provider";
+import clsx from "clsx";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,10 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-w-screen flex min-h-screen items-center justify-center">
+      <body className={clsx(inter.className)}>
         <Providers>
-          <main
-            className={`bgc2 relative m-auto max-h-90 min-h-400 min-w-70 max-w-90 rounded-md p-10 text-center shadow-2xl shadow-black ${inter.className}`}>
+          <main className="flex h-full min-h-screen flex-col items-center justify-center gap-5 pt-5 pb-10 md:gap-10">
             {children}
           </main>
         </Providers>

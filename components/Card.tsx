@@ -5,16 +5,22 @@ import { play } from "@/redux/slices/cacheSlice";
 import { Hand } from "@/types/Hand";
 import clsx from "clsx";
 import React from "react";
+import Choice from "./Choice";
 
 type Props = {
   children?: React.ReactNode;
   tiny?: boolean;
   rival?: boolean;
-  hidden?: boolean;
   hand: Hand;
 };
 
-const Card = ({ children, tiny, rival, hidden, hand }: Props) => {
+const hands = {
+  rock: <Choice>✊🏼</Choice>,
+  paper: <Choice>✋🏼</Choice>,
+  scissors: <Choice>✌🏼</Choice>,
+};
+
+const Card = ({ children, tiny, rival, hand }: Props) => {
   const dispatch = useAppDispatch();
   const {
     winner,
@@ -50,7 +56,7 @@ const Card = ({ children, tiny, rival, hidden, hand }: Props) => {
         winner === "draw" && "bg-yellow-400"
       )}
       disabled={rival || !!winner}>
-      {(winner || !rival) && children}
+      {(winner || !rival) && (children ?? hands[hand])}
     </button>
   );
 };

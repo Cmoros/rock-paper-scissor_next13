@@ -2,6 +2,7 @@ import { rockPaperScissors } from "@/lib/rockPaperScissors";
 import { Hand, Winner, hands } from "@/types/Hand";
 import { HistorySerialized } from "@/types/History";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 export type CacheState = {
   player: string;
@@ -24,11 +25,12 @@ const defaultState: CacheState = {
 const getInitialState = () => {
   const cachedString = localStorage.getItem(PLAYER_CACHE_KEY);
   try {
-    if (!cachedString) throw new Error();
+    if (!cachedString) throw new Error("No user found");
     const cached: CacheState = JSON.parse(cachedString);
     return cached;
   } catch (e: unknown) {
-    return defaultState;
+    console.info((e as Error).message);
+    return { ...defaultState };
   }
 };
 
@@ -42,11 +44,18 @@ export const translate: Record<number, Winner> = {
   2: "rival",
 };
 
+const resetPlay = (state: CacheState) => {
+  state.hand = undefined;
+  state.rivalHand = undefined;
+  state.winner = undefined;
+};
+
 export const cacheSlice = createSlice({
   name: "cache",
   initialState,
   reducers: {
     signin: (state, action: PayloadAction<InitialState["player"]>) => {
+      resetPlay(state);
       state.player = action.payload;
       state.allPlayers[state.player] ??= {
         player: state.player,
@@ -54,7 +63,7 @@ export const cacheSlice = createSlice({
       };
     },
     logout: (state) => {
-      state.player = "";
+      resetPlay(state);
     },
     addHistory: (state, action: PayloadAction<HistorySerialized>) => {
       const { player } = state;
@@ -66,19 +75,34 @@ export const cacheSlice = createSlice({
     },
     init: (state) => {
       const { allPlayers, player } = getInitialState();
-      state.allPlayers = allPlayers;
+      state.allPlayers = { ...allPlayers };
+      if (player) {
+        state.allPlayers[player] ??= {
+          player: state.player,
+          histories: [],
+        };
+      }
       state.player = player;
     },
-    play: (state, action: PayloadAction<Hand>) => {
-      state.hand = action.payload;
-      state.rivalHand = hands[Math.floor(Math.random() * 3)];
-      const winnerNumber = rockPaperScissors(action.payload, state.rivalHand);
-      state.winner = translate[winnerNumber];
+    play: (state, { payload: hand }: PayloadAction<Hand>) => {
+      const rivalHand = hands[Math.floor(Math.random() * 3)];
+      state.hand = hand;
+      state.rivalHand = rivalHand;
+      const winnerNumber = rockPaperScissors(hand, rivalHand);
+      const winner = translate[winnerNumber];
+      state.winner = winner;
+      const history: HistorySerialized = {
+        hand,
+        rivalHand,
+        winner,
+        time: new Date().toDateString(),
+        id: uuidv4(),
+      };
+      const { player } = state;
+      state.allPlayers[player].histories.push(history);
     },
     newGame: (state) => {
-      state.hand = undefined;
-      state.rivalHand = undefined;
-      state.winner = undefined;
+      resetPlay(state);
     },
   },
 });

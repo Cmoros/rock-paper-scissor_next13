@@ -13,6 +13,7 @@ module.exports = {
       minWidth: {
         70: "70vw",
         90: "90vw",
+        screen: "100vh",
       },
       minHeight: {
         70: "70vh",

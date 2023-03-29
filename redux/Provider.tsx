@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { store } from "./store";
 import { Provider } from "react-redux";
-import { init } from "./slices/cacheSlice";
+import { init, signin } from "./slices/cacheSlice";
 import { useRouter } from "next/navigation";
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -25,6 +25,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     } else {
       if (player) {
         router.replace("/game");
+        // store.dispatch(signin(player))
       }
     }
   }, [router, player, pathname]);
