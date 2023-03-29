@@ -8,17 +8,16 @@ import { useRouter } from "next/navigation";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const [isInit, setInit] = useState(false);
+  const [pathname, setPathname] = useState("");
   const { player } = store.getState().cache;
-  const pathname = window?.location?.pathname;
 
   useEffect(() => {
     store.dispatch(init());
-    setInit(true);
+    setPathname(window.location.pathname);
   }, [router]);
 
   useEffect(() => {
-    if (!isInit) return;
+    if (!pathname) return;
     if (pathname === "/game") {
       if (!player) {
         router.replace("/");
@@ -28,7 +27,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         router.replace("/game");
       }
     }
-  }, [isInit, router, player, pathname]);
+  }, [router, player, pathname]);
 
   return <Provider store={store}>{children}</Provider>;
 }

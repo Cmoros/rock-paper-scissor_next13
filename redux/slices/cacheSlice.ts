@@ -58,7 +58,6 @@ export const cacheSlice = createSlice({
     },
     addHistory: (state, action: PayloadAction<HistorySerialized>) => {
       const { player } = state;
-      console.log({ state });
       state.allPlayers[player].histories.push(action.payload);
     },
     clearHistory: (state) => {

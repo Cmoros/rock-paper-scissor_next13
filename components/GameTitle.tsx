@@ -10,7 +10,6 @@ const GameTitle = (props: Props) => {
     const { player } = cache;
     return cache.allPlayers[player];
   });
-  console.log({ player });
   if (!player) return <h2>Loading...</h2>;
   return (
     <h1>

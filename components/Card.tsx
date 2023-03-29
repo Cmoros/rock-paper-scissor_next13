@@ -28,10 +28,7 @@ const Card = ({ children, tiny, rival, hidden, hand }: Props) => {
   const handleChoose = () => {
     dispatch(play(hand));
   };
-  // if (winner) {
-  //   alert(winner);
-  // }
-  console.log({ winner, rivalHand, hand });
+
   return (
     <button
       onClick={handleChoose}
