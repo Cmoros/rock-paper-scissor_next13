@@ -29,7 +29,7 @@ const Result = (props: Props) => {
       <h3 className="p-5 text-center text-2xl">{message}</h3>
       <button
         onClick={handlePlayAgain}
-        className="title--bgc animate-pulse cursor-pointer self-end rounded-md py-2 px-4 text-xl text-black shadow-md  shadow-black transition duration-200 hover:scale-105 hover:animate-none hover:shadow-none">
+        className="title--bgc animate-pulse cursor-pointer self-end rounded-md py-2 px-8 text-xl text-black shadow-md  shadow-black transition duration-200 hover:scale-105 hover:animate-none hover:shadow-none">
         Play Again!
       </button>
     </div>

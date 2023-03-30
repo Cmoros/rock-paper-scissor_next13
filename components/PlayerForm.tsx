@@ -43,7 +43,7 @@ const PlayerForm = ({}: Props) => {
         <input
           type="submit"
           value="Play!"
-          className="title--bgc animate-pulse cursor-pointer self-end rounded-md py-2 px-4 text-xl text-black shadow-md  shadow-black transition duration-200 hover:scale-105 hover:animate-none hover:shadow-none"
+          className="title--bgc animate-pulse cursor-pointer self-end rounded-md py-2 px-8 text-xl text-black shadow-md  shadow-black transition duration-200 hover:scale-105 hover:animate-none hover:shadow-none"
         />
       </div>
     </form>
