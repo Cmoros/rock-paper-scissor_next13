@@ -5,8 +5,8 @@ import { useAppSelector } from "@/redux/hooks";
 
 type Props = {};
 
-const GameTitle = (props: Props) => {
-  const player = useAppSelector(({ cache }) => {
+const GameTitle = ({}: Props) => {
+  const player = useAppSelector(({ game: cache }) => {
     const { player } = cache;
     return cache.allPlayers[player];
   });

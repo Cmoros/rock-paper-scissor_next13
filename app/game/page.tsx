@@ -7,7 +7,7 @@ import ButtonPanel from "@/components/ButtonPanel";
 
 type Props = {};
 
-const Game = (props: Props) => {
+const Game = ({}: Props) => {
   return (
     <>
       <div

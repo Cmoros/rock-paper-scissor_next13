@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { ReactNode } from "react";
+import React from "react";
 
 const Button = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (

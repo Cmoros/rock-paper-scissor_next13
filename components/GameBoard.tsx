@@ -1,14 +1,14 @@
 import React from "react";
 import Choices from "./Choices";
-import AdversaryChoice from "./AdversaryChoice";
+import RivalChoices from "./RivalChoices";
 
 type Props = {};
 
-const GameBoard = (props: Props) => {
+const GameBoard = ({}: Props) => {
   return (
     <div>
       <Choices />
-      <AdversaryChoice />
+      <RivalChoices />
     </div>
   );
 };

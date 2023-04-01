@@ -1,26 +1,17 @@
 import React from "react";
 import Card from "./Card";
-import Choice from "./Choice";
-import { Hand } from "@/types/Hand";
+import { hands } from "@/types/Hand";
 
 type Props = {};
 
-export const choices: { label: string; hand: Hand }[] = [
-  { label: "✊🏼", hand: "rock" },
-  { label: "✋🏼", hand: "paper" },
-  { label: "✌🏼", hand: "scissors" },
-];
-
-const Choices = (props: Props) => {
+const Choices = ({}: Props) => {
   return (
     <div>
       <h2 className="p-5 text-center text-xl">Make your choice</h2>
       <ul className="flex items-center justify-center gap-5 p-5">
-        {choices.map(({ label, hand }) => (
+        {hands.map((hand) => (
           <li key={hand}>
-            <Card hand={hand}>
-              <Choice>{label}</Choice>
-            </Card>
+            <Card hand={hand} />
           </li>
         ))}
       </ul>

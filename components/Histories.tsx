@@ -8,7 +8,7 @@ type Props = {};
 
 const Histories = ({}: Props) => {
   const histories = useAppSelector(
-    ({ cache: { allPlayers, player } }) => allPlayers[player]?.histories
+    ({ game: { allPlayers, player } }) => allPlayers[player]?.histories
   );
   return (
     <div className="relative h-full overflow-auto pb-2">

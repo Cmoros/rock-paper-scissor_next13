@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cacheMiddleware from "./middlewares/cacheMiddleware";
-import { cacheReducers } from "./slices/cacheSlice";
+import { gameReducers } from "./slices/gameSlice";
 
 export const store = configureStore({
   reducer: {
-    cache: cacheReducers,
+    game: gameReducers,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware().concat(cacheMiddleware.middleware);

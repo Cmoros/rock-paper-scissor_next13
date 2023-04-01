@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppDispatch } from "@/redux/hooks";
-import { signin } from "@/redux/slices/cacheSlice";
+import { signin } from "@/redux/slices/gameSlice";
 import { useRouter } from "next/navigation";
 import React, { FormEvent } from "react";
 

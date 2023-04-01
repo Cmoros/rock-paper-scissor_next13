@@ -31,7 +31,7 @@ const messages: Record<
   },
 };
 
-const History = ({ hand, rivalHand, time, winner }: Props) => {
+const History = ({ hand, rivalHand, winner }: Props) => {
   const { className, title } = messages[winner];
   return (
     <div className="flex h-full w-24 flex-col items-center justify-center gap-2 rounded-md border-2 border-solid border-gray-500 p-4 hover:border-white">

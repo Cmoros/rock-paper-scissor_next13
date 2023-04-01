@@ -1,6 +1,6 @@
 import { Hand } from "@/types/Hand";
 
-const evaluacion = {
+const evaluation = {
   rock: {
     paper: 2,
     scissors: 1,
@@ -11,7 +11,10 @@ const evaluacion = {
   scissors: {},
 } as Record<Hand, Record<Hand, number>>;
 
-export function rockPaperScissors(jugada1: Hand, jugada2: Hand) {
-  if (jugada1 === jugada2) return 0;
-  return evaluacion[jugada1][jugada2] ?? (evaluacion[jugada2][jugada1] % 2) + 1;
+export function rockPaperScissors(play1: Hand, play2: Hand) {
+  if (play1 === play2) return 0;
+  return (evaluation[play1][play2] ?? (evaluation[play2][play1] % 2) + 1) as
+    | 0
+    | 1
+    | 2;
 }

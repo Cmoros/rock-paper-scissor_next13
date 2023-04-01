@@ -1,23 +1,23 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { newGame } from "@/redux/slices/cacheSlice";
-import { Winner } from "@/types/Hand";
+import { newGame } from "@/redux/slices/gameSlice";
 import React, { useCallback } from "react";
 
 type Props = {};
 
-const messages: Record<Winner, (player: string) => string> = {
+const messages = {
   draw: () => "This has been a DRAW",
   player: (player: string) => `${player} has WON`,
   rival: () => "The rival has WON",
 };
 
-const Result = (props: Props) => {
+const Result = ({}: Props) => {
   const dispatch = useAppDispatch();
-  const { winner, player } = useAppSelector(
-    ({ cache: { winner, player } }) => ({ winner, player })
-  );
+  const { winner, player } = useAppSelector(({ game: { winner, player } }) => ({
+    winner,
+    player,
+  }));
   const handlePlayAgain = useCallback(() => {
     dispatch(newGame());
   }, [dispatch]);
